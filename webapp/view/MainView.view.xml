@@ -1,0 +1,72 @@
+<mvc:View controllerName="com.parker.pricechangereport.controller.MainView"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns:f="sap.ui.layout.form" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified" xmlns:ui="sap.ca.ui">
+	<Page id="page" title="{i18n>title}">
+		<content>
+		<f:SimpleForm class="formHeader" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12"
+			adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3"
+			singleContainerFullSize="false">
+			<f:content>
+				<core:Title text=""/>
+				<Label class="sapUiSmallMarginTop" text="Enter Date"/>
+				<DateRangeSelection id="selectedDate" class="sapUiTinyMarginTop"  dateValue="" secondDateValue="" valueFormat="MM/dd/yyyy" change="onDateSelection" displayFormat="MM/dd/yyyy"
+						placeholder="From - To"/>
+				
+				</f:content>
+				</f:SimpleForm>
+			<Table items="{ path: 'ViewModel>/DataSet' }">
+				<columns>
+					
+					<Column >
+						<Text text="Purchasing Document"/>
+					</Column>
+					<Column >
+						<Text text="Purchasing Group"/>
+					</Column>
+					<Column >
+						<Text text="Line Item"/>
+					</Column>
+					<Column width="22%">
+						<Text text="Material Number"/>
+					</Column>
+					<Column width="22%">
+						<Text text="Vendor Number"/>
+					</Column>
+					<Column >
+						<Text text="Old Value"/>
+					</Column>
+					<Column >
+						<Text text="New Value"/>
+					</Column>
+					<Column >
+						<Text text="Changed Date"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<!-- <Text text="{ViewModel>OBJECTCLAS}"/> -->
+							<Text text="{ViewModel>OBJECTID}"/>
+							<Text text="{ViewModel>Pur_grp}"/>
+							<Text text="{ViewModel>line_item}"/>
+							<ObjectNumber number="{ViewModel>material}" unit="{ViewModel>material_text}"></ObjectNumber>
+							<ObjectNumber number="{ViewModel>vendor}" unit="{ViewModel>vendor_text}"></ObjectNumber>
+							<Text text="{ViewModel>old_netwr}"/>
+							<Text text="{ViewModel>new_netwr}"/>
+							<Text text="{
+				path: 'ViewModel>newdate',
+				type: 'sap.ui.model.type.Date',
+				formatOptions: {
+					style: 'short',
+					pattern: 'dd/MM/yyyy'
+					
+				}
+			}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</mvc:View>

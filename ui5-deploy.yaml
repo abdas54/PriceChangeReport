@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.5"
+metadata:
+  name: com.parker.pricechangereport
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: DS4
+          url: http://parkerds4vm:8001
+        app:
+          name: ZPRCECHNGRPRT
+          description: Price Change Report
+          package: ZFIORIP
+          transport: DS4K906799
